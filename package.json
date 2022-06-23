@@ -1,10 +1,21 @@
 {
   "name": "todo-list",
   "version": "1.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "mongodb": "^4.7.0",
+    "mongoose": "^6.4.0",
+    "swagger-autogen": "^2.21.3",
+    "swagger-ui-express": "^4.4.0"
+  },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon swagger.js",
+    "start": "node swagger.js",
+    "swagger-autogen": "node swagger.js"
   },
   "keywords": [],
   "author": "",
