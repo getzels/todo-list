@@ -1,16 +1,27 @@
 const db = require('../models');
 const Task = db.task;
+const httpError = require("http-errors");
 
-exports.list_all = function (req, res) {
+exports.list_all = function (req, res, next) {
     Task.find({}, function(err, task) {
         if (err)
             res.send(err)
         res.json(task)
+    }).catch((err) => {
+        next(httpError(500, "Error trying to find all task", err));
     });
 };
 
 exports.get_by_id = function (req, res) {
     Task.findById(req.params.id, function(err, task) {
+        if (err)
+            res.send(err)
+        res.json(task)
+    });
+}
+
+exports.get_by_name = function (req, res) {
+    Task.find({}, 'name', req.params.name, function(err, task) {
         if (err)
             res.send(err)
         res.json(task)
