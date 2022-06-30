@@ -1,14 +1,18 @@
 const routes = require('express').Router();
 const taskController = require('../controller/taskController')
+const {taskCreationValidation, taskIdValidation, taskNameValidation} = require("../helpers/Validation")
+
 
 routes.get('/', taskController.list_all);
 
-routes.get('/:contactId', taskController.get_by_id);
+routes.get('/:id', taskIdValidation, taskController.get_by_id);
 
-routes.post('/', taskController.create);
+routes.get('/:name', taskNameValidation, taskController.get_by_name);
 
-routes.put('/:contactId', taskController.update);
+routes.post('/', taskCreationValidation, taskController.create);
 
-routes.delete('/:contactId', taskController.delete);
+routes.put('/:id', taskIdValidation,  taskCreationValidation, taskController.update);
+
+routes.delete('/:id', taskIdValidation, taskController.delete);
 
 module.exports = routes
