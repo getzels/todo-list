@@ -5,13 +5,12 @@ const bodyParser = require('body-parser');
 const swaggerAutogen = require('swagger-autogen')();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger/swagger-output.json');
-const cors = require('cors');
-
-
-const app = express();
-const port = process.env.PORT || 3000
-
 const db = require('./models');
+
+const cors = require('cors');
+const app = express();
+
+const port = process.env.PORT || 3000
 db.mongoose.
     connect(db.url, {
         useNewUrlParser: true,
@@ -25,13 +24,11 @@ db.mongoose.
         process.exit();
     });
 
-
-
-app.use('/task', require('./routers/taskRouter'));
-
 var options = {
     explorer: true
 };
+
+app.use('/task', require('./routers/taskRouter'));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
