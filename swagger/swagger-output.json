@@ -5,7 +5,7 @@
     "description": "Project 2",
     "version": "1.0.0"
   },
-  "host": "https://cse341-todo-list.herokuapp.com/",
+  "host": "cse341-todo-list.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "https"
@@ -47,12 +47,12 @@
         }
       }
     },
-    "/task/{contactId}": {
+    "/task/{id}": {
       "get": {
         "description": "",
         "parameters": [
           {
-            "name": "contactId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -68,7 +68,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "contactId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -99,7 +99,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "contactId",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -114,6 +114,24 @@
           },
           "500": {
             "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/task/{name}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
           }
         }
       }

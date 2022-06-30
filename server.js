@@ -29,7 +29,7 @@ var options = {
 };
 
 app.use('/task', require('./routers/taskRouter'));
-
+app.use('/auth', require('./routers/authentication'));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
 app.listen(port, () => {
