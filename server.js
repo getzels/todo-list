@@ -6,6 +6,7 @@ const swaggerAutogen = require('swagger-autogen')();
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger/swagger-output.json');
 const db = require('./models');
+const session = require('express-session')
 
 const cors = require('cors');
 const app = express();
@@ -27,6 +28,13 @@ db.mongoose.
 var options = {
     explorer: true
 };
+
+// Authentication configuration
+app.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: process.env.CLIENT_SECRET
+}));
 
 app.use('/task', require('./routers/taskRouter'));
 app.use('/auth', require('./routers/authentication'));
