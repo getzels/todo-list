@@ -6,10 +6,10 @@ module.exports = (mongoose) => {
                 id: String,
                 name: String,
                 description: String,
+                userid: String,
                 startTime: Date,
                 endTime: Date
-            },
-            { timestamps: true }
+            }
         )
     );
 

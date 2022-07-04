@@ -7,7 +7,7 @@ exports.list_all = function (req, res, next) {
         if (err)
             res.send(err)
         res.json(task)
-    }).catch((err) => {
+    }).clone().catch((err) => {
         next(httpError(500, "Error trying to find all task", err));
     });
 };
@@ -28,21 +28,16 @@ exports.get_by_name = function (req, res) {
     });
 }
 
-exports.create = function (req, res) {
-
-    if(Object.keys(req.body).length === 0) {
-        res.status(400).send("Miss info to create a task");
-        return;
-    }
+exports.create = function (req, res, next) {
 
     /*  #swagger.parameters['any_name'] = {
                in: 'body',
                description: 'Task info'
         }
     */
-    const task = new Task(req.body);
-
     try {
+        const task = new Task(req.body);
+        task.userid = '62c13faa5da70af04daddde0';
         task.save();
         res.status(201).send(task);
     } catch (error) {

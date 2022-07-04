@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require('mongoose');
 const {dotenv} = require('dotenv').config();
 const bodyParser = require('body-parser');
 const swaggerAutogen = require('swagger-autogen')();
@@ -36,8 +35,12 @@ app.use(session({
     secret: process.env.CLIENT_SECRET
 }));
 
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 app.use('/task', require('./routers/taskRouter'));
-app.use('/auth', require('./routers/authentication'));
+app.use('/auth', require('./routers/authentication').routes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
 app.listen(port, () => {

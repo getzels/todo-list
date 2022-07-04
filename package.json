@@ -11,6 +11,7 @@
     "http-errors": "^2.0.0",
     "mongodb": "^4.7.0",
     "mongoose": "^6.4.0",
+    "mongoose-findorcreate": "^3.0.0",
     "passport": "^0.6.0",
     "passport-google-oauth2": "^0.2.0",
     "swagger-autogen": "^2.21.3",
